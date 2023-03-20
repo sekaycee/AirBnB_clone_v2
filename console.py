@@ -137,10 +137,10 @@ class HBNBCommand(cmd.Cmd):
             if type(attributes[1]) is not tuple:
                 setattr(obj, attributes[0], attributes[1])
         obj.save()
-        #new_instance = HBNBCommand.classes[arg]()
-        #storage.save()
-        #print(new_instance.id)
-        #storage.save()
+        # new_instance = HBNBCommand.classes[arg]()
+        # storage.save()
+        # print(new_instance.id)
+        # storage.save()
 
     def help_create(self):
         """ Help information for the create method """
