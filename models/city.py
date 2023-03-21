@@ -8,7 +8,7 @@ from sqlalchemy import ForeignKey
 from models.place
 
 
-class City(BaseModel):
+class City(BaseModel, Base):
     """ The City class, contains state id and name
     Attributes:
         state_id: The state id
