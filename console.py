@@ -113,34 +113,26 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    def do_create(self, arg):
+    def do_create(self, args):
         """ Create an object of any class"""
-        if not arg:
+        try:
+            if not args:
+                raise SyntaxError()
+            arg_list = args.split(" ")
+            karg = {}
+            for arg in arg_list[1:]:
+                tmp = arg.split("=")
+                tmp[1] = eval(tmp[1])
+                if type(tmp[1]) is str:
+                    tmp[1] = tmp[1].replace("_", " ").replace('"', '\\"')
+                karg[tmp[0]] = tmp[1]
+        except SyntaxError:
             print("** class name missing **")
-            return
-        elif arg not in HBNBCommand.classes:
+        except NameError:
             print("** class doesn't exist **")
-            return
-
-        my_list = arg.split(" ")
-        obj = eval("{}()".format(my_list[0]))
-        print("{}".format(obj.id))
-        for num in range(1, len(my_list)):
-            my_list[num] = my_list[num].replace('=', ' ')
-            attributes = split(my_list[num])
-            attributes[1] = attributes[1].replace('_', ' ')
-            try:
-                tmp = eval(attributes[1])
-                attributes[1] = tmp
-            except Exception:
-                pass
-            if type(attributes[1]) is not tuple:
-                setattr(obj, attributes[0], attributes[1])
-        obj.save()
-        # new_instance = HBNBCommand.classes[arg]()
-        # storage.save()
-        # print(new_instance.id)
-        # storage.save()
+        new_instance = HBNBCommand.classes[arg_list[0]](**karg)
+        new_instance.save()
+        print(new_instance.id)
 
     def help_create(self):
         """ Help information for the create method """
