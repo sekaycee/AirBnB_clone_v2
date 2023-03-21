@@ -79,4 +79,3 @@ class Place(BaseModel, Base):
             """ Appends amenity ids to the attribute """
             if type(obj) is Amenity and obj.id not in self.amenity_ids:
                 self.amenity_ids.append(obj.id)
-
