@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """This module defines a base class for all models in our hbnb clone"""
 from sqlalchemy.ext.declarative import declarative_base
-import uuid
-import models
-from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime
+from datetime import datetime
+import models
+import uuid
 
 Base = declarative_base()
 
@@ -43,8 +43,8 @@ class BaseModel:
 
     def __str__(self):
         """Returns a string representation of the instance"""
-        cls = (str(type(self)).split('.')[-1]).split('\'')[0]
-        return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            type(self).__name__, self.id, self.__dict__)
 
     def __repr__(self):
         """Return a string representaion"""
@@ -58,13 +58,13 @@ class BaseModel:
 
     def to_dict(self):
         """Convert instance into dict format"""
-        dictionary = dict(self.__dict__)
-        dictionary["__class__"] = str(type(self).__name__)
-        dictionary["created_at"] = self.created_at.isoformat()
-        dictionary["updated_at"] = self.updated_at.isoformat()
-        if '_sa_instance_state' in dictionary.keys():
-            del dictionary['_sa_instance_state']
-        return dictionary
+        o_dict = dict(self.__dict__)
+        o_dict["__class__"] = str(type(self).__name__)
+        o_dict["created_at"] = self.created_at.isoformat()
+        o_dict["updated_at"] = self.updated_at.isoformat()
+        if '_sa_instance_state' in o_dict.keys():
+            del o_dict['_sa_instance_state']
+        return o_dict
 
     def delete(self):
         """ Delete object """
