@@ -1,43 +1,15 @@
 #!/usr/bin/python3
-""" """
-from tests.test_models.test_base_model import test_basemodel
+"""test module for the city class"""
+import unittest
+import os
+from os import getenv
 from models.city import City
-import pycodestyle
-
-
-class test_City(test_basemodel):
-    """ """
-
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.name = "City"
-        self.value = City
-
-    def test_state_id(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.state_id), str)
-
-    def test_name(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.name), str)
-
-
-class Test_PEP8(unittest.TestCase):
-    """test User"""
-
-    def test_pep8_user(self):
-        """test pep8 style"""
-        pep8style = pycodestyle.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/city.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
+from models.base_model import BaseModel
+import pep8
 
 
 class TestCity(unittest.TestCase):
-    """this will test the city class X"""
+    """this will test the city class"""
 
     @classmethod
     def setUpClass(cls):
@@ -48,7 +20,7 @@ class TestCity(unittest.TestCase):
 
     @classmethod
     def teardown(cls):
-        """at the end of the test this will tear it down"""
+        """tear down test class once finished"""
         del cls.city
 
     def tearDown(self):
@@ -85,6 +57,7 @@ class TestCity(unittest.TestCase):
         self.assertEqual(type(self.city.name), str)
         self.assertEqual(type(self.city.state_id), str)
 
+    @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") == 'db', 'DB')
     def test_save_City(self):
         """test if the save works"""
         self.city.save()
