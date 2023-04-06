@@ -8,23 +8,8 @@ env.hosts = ['54.90.40.0', '54.90.23.41']
 env.user = 'ubuntu'
 
 
-def do_pack():
-    ''' Create a tarball of the directory web_static '''
-    try:
-        if not os.path.exists('versions'):
-            os.mkdir('versions')
-        t = datetime.now()
-        f = '%Y%m%d%H%M%S'
-        tb_path = 'versions/web_static_{}.tgz'.format(t.strftime(f))
-        local('tar -cvzf {} web_static'.format(tb_path))
-        return tb_path
-    except Exception:
-        return None
-
-
 def do_deploy(archive_path):
-    ''' Deploy the static files to the host servers.
-    Args:
+    ''' Deploy the static files to the host servers.                                                 Args:
         archive_path (str): The path to the archived static files.
     '''
     if not os.path.exists(archive_path):
