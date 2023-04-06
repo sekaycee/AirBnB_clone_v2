@@ -1,11 +1,23 @@
 #!/usr/bin/python3
 ''' Distribute an archive to web servers using the function do_deploy '''
 from datetime import datetime
-from fabric.api import env, put, run
+from fabric.api import env, put, run, local
 import os
 
 env.hosts = ['54.90.40.0', '54.90.23.41']
 env.user = 'ubuntu'
+
+def do_pack():
+    try:
+        if not os.path.exists('versions'):
+            os.mkdir('versions')
+        t = datetime.now()
+        f = '%Y%m%d%H%M%S'
+        tb_path = 'versions/web_static_{}.tgz'.format(t.strftime(f))
+        local('tar -cvzf {} web_static'.format(tb_path))
+        return tb_path
+    except Exception:
+        return None
 
 
 def do_deploy(archive_path):
@@ -31,5 +43,5 @@ def do_deploy(archive_path):
         run('ln -s {} /data/web_static/current'.format(releases_path))
         print('New version deployed!')
         return True
-    except:
+    except Exception:
         return False
