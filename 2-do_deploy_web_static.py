@@ -9,8 +9,9 @@ env.user = 'ubuntu'
 
 
 def do_deploy(archive_path):
-    ''' Deploy the static files to the host servers.                                                 Args:
-        archive_path (str): The path to the archived static files.
+    ''' Deploy the static files to the host servers
+    Args:
+        archive_path (str): The path to the archived static files
     '''
     if not os.path.exists(archive_path):
         return False
