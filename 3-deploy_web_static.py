@@ -8,6 +8,7 @@ env.hosts = ['54.90.40.0', '54.90.23.41']
 env.user = 'ubuntu'
 
 def do_pack():
+    ''' Create a tarball of the directory web_static '''
     try:
         if not os.path.exists('versions'):
             os.mkdir('versions')
