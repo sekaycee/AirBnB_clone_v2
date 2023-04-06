@@ -24,7 +24,7 @@ exec {'add mock html':
   before   => Exec['create symbolic link']
 }
 
-exec {'creat symbolic link':
+exec {'create symbolic link':
   provider => shell,
   command  => 'sudo ln -sf /data/web_static/releases/test/ /data/web_static/current',
   before   => Exec['put location']

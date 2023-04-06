@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 ''' Distribute an archive to web servers using the function do_deploy '''
 from datetime import datetime
-from fabric.api import env, put, run, local
+from fabric.api import env, put, run
 import os
 
 env.hosts = ['54.90.40.0', '54.90.23.41']
@@ -21,7 +21,7 @@ def do_deploy(archive_path):
         releases_path = '/data/web_static/releases/{}/'.format(dir_name)
         tmp_path = '/tmp/' + file_name
 
-        put(archive_path, tmp_path)
+        put(archive_path, '/tmp/')
         run('mkdir -p ' + releases_path)
         run('tar -xzf {} -C {}'.format(tmp_path, releases_path))
         run('rm ' + tmp_path)
