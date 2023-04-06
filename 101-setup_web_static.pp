@@ -2,19 +2,19 @@
 
 exec {'update':
   provider => shell,
-  command  => 'sudo apt-get -y update',
+  command  => 'sudo apt -y update',
   before   => Exec['install and start nginx']
 }
 
 exec {'install and start nginx':
   provider => shell,
-  command  => 'sudo apt-get -y install nginx && sudo service nginx start',
+  command  => 'sudo apt -y install nginx ; sudo service nginx start',
   before   => Exec['make directories']
 }
 
 exec {'make directories':
   provider => shell,
-  command  => 'sudo mkdir -p /data/web_static/releases/test/ && sudo mkdir /data/web_static/shared/',
+  command  => 'sudo mkdir -p /data/web_static/releases/test/ ; sudo mkdir -p /data/web_static/shared/',
   before   => Exec['add mock html']
 }
 
