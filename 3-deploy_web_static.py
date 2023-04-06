@@ -7,6 +7,7 @@ import os
 env.hosts = ['54.90.40.0', '54.90.23.41']
 env.user = 'ubuntu'
 
+
 def do_pack():
     ''' Create a tarball of the directory web_static '''
     try:
@@ -46,6 +47,7 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
+
 
 def deploy():
     ''' Create and distribute an archive to a web server '''
