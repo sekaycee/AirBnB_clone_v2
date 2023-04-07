@@ -13,7 +13,14 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """ Contains the functionality for the HBNB console"""
+    """ Contain the functionality for the HBNB console
+    inherits from the python's Cmd class
+    Attributes:
+        prompt
+        classes
+        dot_cmds
+        types
+    """
 
     # determines prompt for interactive/non-interactive modes
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''

@@ -141,5 +141,3 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 ```
 <br>
 
-#### Contributors
-Kay Cee <se.kaycee@gmail.com>
