@@ -20,7 +20,7 @@ exec {'make directories':
 
 exec {'add mock html':
   provider => shell,
-  command  => 'sudo echo "HBNB Webserver Test" > /data/web_static/releases/test/index.html',
+  command  => 'sudo echo "Holberton School Test" > /data/web_static/releases/test/index.html',
   before   => Exec['create symbolic link']
 }
 
@@ -32,7 +32,7 @@ exec {'create symbolic link':
 
 exec {'put location':
   provider => shell,
-  command  => 'sudo sed -i \'38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t\tautoindex off;\n\t}\n\' /etc/nginx/sites-available/default',
+  command  => 'sudo sed -i "38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t\tautoindex off;\n\t}\n" /etc/nginx/sites-available/default',
   before   => Exec['restart nginx']
 }
 
