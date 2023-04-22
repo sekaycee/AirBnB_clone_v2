@@ -19,17 +19,17 @@ class State(BaseModel, Base):
     cities = relationship('City', cascade='all, delete, delete-orphan',
                           backref='state')
 
-    @property
-    def cities(self):
-        store = models.storage.all()
-        a_list = []
-        result = []
-        for key in store:
-            city = key.replace('.', ' ')
-            city = shlex.split(city)
-            if (city[0] == 'City'):
-                a_list.append(store[key])
-        for item in a_list:
-            if (item.state_id == self.id):
-                result.append(item)
-        return (result)
+    #@property
+    #def cities(self):
+    #    store = models.storage.all()
+    #    a_list = []
+    #    result = []
+    #    for key in store:
+    #        city = key.replace('.', ' ')
+    #        city = shlex.split(city)
+    #        if (city[0] == 'City'):
+    #            a_list.append(store[key])
+    #    for item in a_list:
+    #        if (item.state_id == self.id):
+    #            result.append(item)
+    #    return (result)
