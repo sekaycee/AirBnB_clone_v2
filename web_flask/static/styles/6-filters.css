@@ -23,7 +23,7 @@
 	vertical-align: middle;
 	height: 100%;
 	float: left;
-    width: 25%;
+    	width: 25%;
 
 	line-height: 20px;
 }
@@ -40,6 +40,17 @@
 
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
+
+	height: 300px;
+    	overflow-y: auto;
+}
+
+.popover ul {
+    	padding: 5px 0 5px 20px;
+}
+
+.popover ul li {
+    	padding-bottom: 5px;
 }
 
 .locations:hover .popover {
