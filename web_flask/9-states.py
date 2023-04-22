@@ -12,11 +12,14 @@ def teardown(exception):
     storage.close()
 
 
-@app.route('/states', strict_slashes=False)
+@app.route('/states/', strict_slashes=False)
 @app.route('/states/<id>', strict_slashes=False)
 def states_id(id):
     ''' Display an HTML page with info about state, if it exists '''
-    for state in storage.all('State').values():
+    states = storage.all('State').values()
+    if not id:
+        return (render_template('9-states.html', states=states))
+    for state in states:
         if state.id == id:
             return (render_template('9-states.html', state=state))
     return (render_template('9-states.html'))
