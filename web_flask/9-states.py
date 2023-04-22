@@ -19,9 +19,10 @@ def states_id(id=None):
     states = storage.all('State')
     if not id:
         return (render_template('9-states.html', states=states))
-    for state in states.values():
-        if state.id == id:
-            return (render_template('9-states.html', state=state))
+
+    key = 'State.{}'.format(id)
+    if key in states:
+        return (render_template('9-states.html', state=states[key]))
     return (render_template('9-states.html'))
 
 
