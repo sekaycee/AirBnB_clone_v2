@@ -18,7 +18,7 @@ def states_id(id=None):
     ''' Display an HTML page with info about state, if it exists '''
     states = storage.all('State')
     if not id:
-        return (render_template('9-states.html', states=states))
+        return (render_template('7-states_list.html', states=states))
 
     key = 'State.{}'.format(id)
     if key in states:
