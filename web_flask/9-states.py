@@ -22,8 +22,8 @@ def states_id(id=None):
 
     key = 'State.{}'.format(id)
     if key in states:
-        return (render_template('9-states.html', state=states[key]))
-    return (render_template('9-states.html'))
+        return (render_template('9-states.html', states=states[key]))
+    return (render_template('9-states.html', states=None))
 
 
 if __name__ == '__main__':
