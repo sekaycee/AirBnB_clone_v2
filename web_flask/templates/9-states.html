@@ -4,11 +4,11 @@
     <TITLE>HBNB</TITLE>
   </HEAD>
   <BODY>
-    {% if states %}
-    <H1>State: {{states.name}}</H1>
+    {% if state is defined %}
+    <H1>State: {{state.name}}</H1>
     <H3>Cities:</H3>
     <UL>
-      {% for city in states.cities | sort(attribute="name") %}
+      {% for city in state.cities | sort(attribute="name") %}
       <LI>{{city.id}}: <B>{{city.name}}</B></LI>
       {% endfor %}
     </UL>
